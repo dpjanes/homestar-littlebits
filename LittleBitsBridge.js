@@ -48,7 +48,12 @@ var logger = bunyan.createLogger({
 var LittleBitsBridge = function (initd, native) {
     var self = this;
 
-    self.initd = _.defaults(initd, {});
+    self.initd = _.defaults(initd, {
+        access_token: null,
+        id: undefined,      // will restrict devices
+        label: undefined,   // will restrict devices
+        name: null,
+    });
     self.native = native;
 
     if (self.native) {
@@ -70,18 +75,37 @@ var LittleBitsBridge = function (initd, native) {
 LittleBitsBridge.prototype.discover = function () {
     var self = this;
 
-    var cp = iotdb.module("iotdb-upnp").control_point();
+    self.initd.access_token = self.initd.access_token || iotdb.keystore().get("/bridges/LittleBitsBridge/account/access_token");
 
-    cp.on("device", function (native) {
-        if (!self._is_supported(native)) {
-            return;
-        }
+    if (!self.initd.access_token) {
+        logger.error({
+            method: "discover",
+        }, "LittleBits is not configured");
+        return;
+    }
 
-        self.discovered(new LittleBitsBridge(self.initd, native));
+    var api = littlebits.defaults({
+        access_token: self.initd.access_token,
+        label: self.initd.label,
+        id: self.initd.id,
     });
 
-    cp.search();
+    api.devices(function(error, devices) {
+        for (var di in devices) {
+            var device = devices[di];
+            var native = api.defaults({
+                id: device.id,
+            });
 
+            var initd = _.defaults({
+                id: device.id,
+            }, self.initd, {
+                name: device.label,
+            });
+
+            self.discovered(new LittleBitsBridge(initd, native));
+        };
+    });
 };
 
 /**
@@ -101,7 +125,6 @@ LittleBitsBridge.prototype.connect = function (connectd) {
     });
 
     self._setup_events();
-
 };
 
 LittleBitsBridge.prototype._setup_events = function () {
@@ -204,13 +227,10 @@ LittleBitsBridge.prototype.meta = function () {
     }
 
     return {
-        "iot:thing": _.id.thing_urn.unique("LittleBitsSocket", self.native.uuid),
-        "schema:name": self.native.friendlyName || "LittleBits",
-        'iot:vendor/type': self.native.deviceType,
-        'iot:vendor/model': self.native.modelName,
-        "schema:manufacturer": "http://www.belkin.com/",
-        /* XXX - note to self - need a way for connectd to inject schema */
-        // "schema:model": "http://www.belkin.com/us/p/P-F7C027/",
+        "iot:thing": _.id.thing_urn.unique("LittleBits", self.initd.id),
+        "schema:name": self.initd.name || "LittleBits",
+        "schema:manufacturer": "http://littlebits.cc/",
+        "schema:model": "http://littlebits.cc/cloud",
     };
 };
 
