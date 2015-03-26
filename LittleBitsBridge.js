@@ -41,8 +41,6 @@ var logger = bunyan.createLogger({
  *  <ul>
  *  <li><code>discovered</code> - tell IOTDB that we're talking to a new Thing
  *  <li><code>pulled</code> - got new data
- *  <li><code>connected</code> - this is connected to a Thing
- *  <li><code>disconnnected</code> - this has been disconnected from a Thing
  *  </ul>
  */
 var LittleBitsBridge = function (initd, native) {
@@ -50,8 +48,7 @@ var LittleBitsBridge = function (initd, native) {
 
     self.initd = _.defaults(initd, {
         access_token: null,
-        id: undefined,      // will restrict devices
-        label: undefined,   // will restrict devices
+        id: null,
         name: null,
     });
     self.native = native;
@@ -75,33 +72,31 @@ var LittleBitsBridge = function (initd, native) {
 LittleBitsBridge.prototype.discover = function () {
     var self = this;
 
-    self.initd.access_token = self.initd.access_token || iotdb.keystore().get("/bridges/LittleBitsBridge/account/access_token");
-
-    if (!self.initd.access_token) {
+    var api = self._api();
+    if (!api) {
         logger.error({
             method: "discover",
-        }, "LittleBits is not configured");
+        }, "LittleBits is not configured correctly");
         return;
     }
-
-    var api = littlebits.defaults({
-        access_token: self.initd.access_token,
-        label: self.initd.label,
-        id: self.initd.id,
-    });
 
     api.devices(function(error, devices) {
         for (var di in devices) {
             var device = devices[di];
+            if (self.initd.id && (device.id !== self.initd.id)) {
+                continue;
+            } else if (self.initd.name && (device.label !== self.initd.name)) {
+                continue;
+            }
+
             var native = api.defaults({
-                id: device.id,
+                device_id: device.id,
             });
 
             var initd = _.defaults({
                 id: device.id,
-            }, self.initd, {
                 name: device.label,
-            });
+            }, self.initd);
 
             self.discovered(new LittleBitsBridge(initd, native));
         };
@@ -120,8 +115,12 @@ LittleBitsBridge.prototype.connect = function (connectd) {
 
     self.connectd = _.defaults(connectd, {
         subscribes: [],
-        data_in: function (paramd) {},
-        data_out: function (paramd) {},
+        data_in: function (paramd) {
+            paramd.cookd = paramd.rawd;
+        },
+        data_out: function (paramd) {
+            paramd.rawd = paramd.cookd;
+        },
     });
 
     self._setup_events();
@@ -135,8 +134,24 @@ LittleBitsBridge.prototype._setup_events = function () {
     }
 };
 
-LittleBitsBridge.prototype._setup_event = function (service_urn) {
+LittleBitsBridge.prototype._setup_event = function (subscribe_id) {
     var self = this;
+
+    self.native.subscribe({
+        subscriber_id: self.initd.id,
+        publisher_id: self.initd.id,
+        publisher_events: [ 
+            "amplitude",
+            "amplitude:delta:sustain",
+            "amplitude:delta:ignite",
+            "amplitude:delta:release",
+            "amplitude:delta:nap",
+            "amplitude:level:active",
+            "amplitude:level:idle",
+        ]
+    }, function() {
+        console.log("HERE:EVENT.ACTIVE", arguments);
+    });
 
 };
 
@@ -188,8 +203,46 @@ LittleBitsBridge.prototype.push = function (pushd) {
     logger.info({
         method: "push",
         unique_id: self.unique_id,
-        pushd: pushd,
+        cookd: paramd.cookd,
+        rawd: paramd.rawd,
     }, "pushed");
+
+    if (paramd.rawd.percent !== undefined) {
+        self.native.output({
+            percent: paramd.rawd.percent,
+            duration_ms: -1,
+        }, function() {
+            console.log("HERE:RESULT", arguments);
+        });
+    } else if (paramd.rawd.color) {
+        /*
+        
+        self.native.light({
+            color: "yellow",
+            mode: "blink",
+        }, function() {
+        });
+        */
+    }
+
+    /*
+    if (pushed.mode) {
+    }
+
+    if (pushed.duration) {
+    }
+
+    if (pushed.percent) {
+    }
+
+    percent :: Float | >= 0, <= 100
+
+
+    color :: String | "green" "yellow" "red" "blue" "purple" "white" "cyan" "clownbarf"
+    mode :: String | "blink" "hold"
+    duration_ms :: Integer | >= 0
+    device_id :: String
+    */
 };
 
 /**
@@ -260,6 +313,38 @@ LittleBitsBridge.prototype.discovered = function (bridge) {
 LittleBitsBridge.prototype.pulled = function (pulld) {
     throw new Error("LittleBitsBridge.pulled not implemented");
 };
+
+/* --- internals -- */
+var __api;
+
+LittleBitsBridge.prototype._api = function () {
+    var self = this;
+
+    /* special case */
+    if (self.initd.access_token) {
+        return littlebits.defaults({
+            access_token: self.initd.access_token,
+        });
+    }
+
+    /* normal case */
+    if (!__api) {
+        var access_token = iotdb.keystore().get("/bridges/LittleBitsBridge/account/access_token");
+        if (!access_token) {
+            logger.error({
+                method: "_api",
+                cause: "set /bridges/LittleBitsBridge/account/access_token",
+            }, "LittleBits is not configured correctly");
+            return;
+        }
+
+        __api = littlebits.defaults({
+            access_token: access_token,
+        });
+    }
+
+    return __api;
+}
 
 /*
  *  API

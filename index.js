@@ -25,6 +25,8 @@
 exports.Bridge = require('./LittleBitsBridge');
 exports.bindings = [
     require('./models/LittleBitsBoard').binding,
+    require('./models/LittleBitsLight').binding,
+    require('./models/LittleBitsButton').binding,
 ];
 
 exports.iotdb = require("iotdb");
