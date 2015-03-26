@@ -1,5 +1,5 @@
 /*
- *  LittleBitsLight.js
+ *  LittleBitsOutputBoolean.js
  *
  *  David Janes
  *  IOTDB
@@ -8,11 +8,10 @@
 
 var iotdb = require("iotdb");
 
-exports.Model = iotdb.make_model('LittleBitsLight')
+exports.Model = iotdb.make_model('LittleBitsOutputBoolean')
     .facet(":toy")
-    .name("LittleBits LED")
-    .io("on", iotdb.boolean.on)
-    .io("brightness", iotdb.number.percent.brightness)
+    .name("LittleBits Output Boolean")
+    .o("on", iotdb.boolean.on)
     .make();
 
 exports.binding = {
@@ -26,9 +25,7 @@ exports.binding = {
         },
 
         data_out: function(paramd) {
-            if (paramd.cookd.brightness !== undefined) {
-                paramd.rawd.percent = paramd.cookd.brightness;
-            } else if (paramd.cookd.on !== undefined) {
+            if (paramd.cookd.on !== undefined) {
                 paramd.rawd.percent = paramd.cookd.on ? 100 : 0;
             }
         },

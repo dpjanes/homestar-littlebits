@@ -1,5 +1,5 @@
 /*
- *  LittleBitsButton.js
+ *  LittleBitsInputBoolean.js
  *
  *  David Janes
  *  IOTDB
@@ -8,9 +8,9 @@
 
 var iotdb = require("iotdb");
 
-exports.Model = iotdb.make_model('LittleBitsButton')
+exports.Model = iotdb.make_model('LittleBitsInputBoolean')
     .facet(":toy")
-    .name("LittleBits Button")
+    .name("LittleBits Input Boolean")
     .i("on", iotdb.boolean.on)
     .make();
 
@@ -23,7 +23,7 @@ exports.binding = {
         ],
 
         data_in: function(paramd) {
-            console.log("LittleBitsButton:data_in", paramd);
+            console.log("LittleBitsInputBoolean:data_in", paramd);
         },
 
         data_out: function(paramd) {

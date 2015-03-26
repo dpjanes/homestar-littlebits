@@ -1,18 +1,17 @@
 /*
- *  LittleBitsBoard.js
+ *  LittleBitsOutputRange.js
  *
  *  David Janes
  *  IOTDB
- *  2014-03-23
+ *  2014-03-24
  */
 
 var iotdb = require("iotdb");
 
-exports.Model = iotdb.make_model('LittleBitsBoard')
+exports.Model = iotdb.make_model('LittleBitsOutputRange')
     .facet(":toy")
-    .product("http://littlebits.cc/cloud")
-    .name("LittleBits Cloud Board")
-    .io("color", iotdb.string.color)
+    .name("LittleBits Output Range")
+    .o("percent", iotdb.number.percent)
     .make();
 
 exports.binding = {
@@ -26,6 +25,9 @@ exports.binding = {
         },
 
         data_out: function(paramd) {
+            if (paramd.cookd.percent !== undefined) {
+                paramd.rawd.percent = paramd.cookd.percent;
+            }
         },
     },
 };

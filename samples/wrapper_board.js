@@ -8,7 +8,7 @@
 var iotdb = require("iotdb");
 var _ = iotdb._;
 
-var ModelBinding = require('../models/LittleBitsBoard');
+var ModelBinding = require('../models/LittleBitsDeviceLight');
 
 wrapper = _.bridge_wrapper(ModelBinding.binding, {
 });

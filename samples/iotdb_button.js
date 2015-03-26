@@ -7,7 +7,7 @@
 var iotdb = require('iotdb')
 var iot = iotdb.iot();
 
-var things = iot.connect('LittleBitsButton');
+var things = iot.connect('LittleBitsInputBoolean');
 things.on("state", function(thing) {
     console.log("+", thing.thing_id(), "\n ", thing.state());
 });

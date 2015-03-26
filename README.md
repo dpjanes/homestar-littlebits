@@ -1,6 +1,9 @@
 # homestar-littlebits
 IOTDB / HomeStar Controller for Little Bits Cloud
 
+NOTE: This is not working yet!!!
+
+
 # Setup
 
 ## Quick Setup
@@ -11,7 +14,8 @@ Do this:
 
 
 ## Links
-http://control.littlebitscloud.cc/
-https://github.com/littlebits/cloud-client-api-http
-http://littlebits.cc/cloud
+
+* http://control.littlebitscloud.cc/
+* https://github.com/littlebits/cloud-client-api-http
+* http://littlebits.cc/cloud
 
