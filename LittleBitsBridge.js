@@ -212,7 +212,7 @@ LittleBitsBridge.prototype.push = function (pushd) {
             percent: paramd.rawd.percent,
             duration_ms: -1,
         }, function() {
-            console.log("HERE:RESULT", arguments);
+            // console.log("HERE:RESULT", arguments);
         });
     } else if (paramd.rawd.color) {
         /*
@@ -294,7 +294,11 @@ LittleBitsBridge.prototype.meta = function () {
  *  shutdown states, they will be always checked first.
  */
 LittleBitsBridge.prototype.reachable = function () {
-    return this.native !== null;
+    if (this.native === null) {
+        return false;
+    }
+
+    return this.native.is_connected;
 };
 
 /**
