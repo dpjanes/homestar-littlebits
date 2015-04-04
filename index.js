@@ -22,7 +22,7 @@
 
 "use strict";
 
-exports.Bridge = require('./LittleBitsBridge');
+exports.Bridge = require('./LittleBitsBridge').Bridge;
 exports.bindings = [
     require('./models/LightBitsOutputBoolean').binding,
     require('./models/LightBitsOutputRange').binding,
