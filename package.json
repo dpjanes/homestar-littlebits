@@ -1,13 +1,10 @@
 {
     "author": "David P. Janes <davidjanes@iotdb.org> (https://iotdb.org)", 
     "bugs": {
-        "url": "https://github.com/dpjanes/homestar-littlebits/issues"
+        "url": "https://github.com/dpjanes/homestar-THEPACKAGE/issues"
     }, 
     "dependencies": {
-        "littlebits-cloud-http": ""
-    }, 
-    "peerDependencies": {
-        "iotdb": ">=0.4.16"
+        "littlebits-cloud-http": "~0.3.4"
     }, 
     "description": "HomeStar / IOTDB Bridge for Littlebits", 
     "devDependencies": {
@@ -25,14 +22,17 @@
     "homestar": {}, 
     "license": "Apache-2.0", 
     "main": "index.js", 
-    "name": "homestar-littlebits", 
+    "name": "homestar-THEPACKAGE", 
+    "peerDependencies": {
+        "iotdb": ">=0.5.12"
+    }, 
     "private": false, 
     "repository": {
         "type": "git", 
-        "url": "https://github.com/dpjanes/homestar-littlebits"
+        "url": "https://github.com/dpjanes/homestar-THEPACKAGE"
     }, 
     "scripts": {
         "test": "grunt"
     }, 
-    "version": "0.0.2"
+    "version": "0.0.3"
 }
