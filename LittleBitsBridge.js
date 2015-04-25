@@ -63,7 +63,7 @@ LittleBitsBridge.prototype.name = function () {
 /* --- lifecycle --- */
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#discover} for documentation.
  */
 LittleBitsBridge.prototype.discover = function () {
     var self = this;
@@ -100,7 +100,7 @@ LittleBitsBridge.prototype.discover = function () {
 };
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#connect} for documentation.
  */
 LittleBitsBridge.prototype.connect = function (connectd) {
     var self = this;
@@ -165,7 +165,7 @@ LittleBitsBridge.prototype._forget = function () {
 };
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#disconnect} for documentation.
  */
 LittleBitsBridge.prototype.disconnect = function () {
     var self = this;
@@ -179,7 +179,7 @@ LittleBitsBridge.prototype.disconnect = function () {
 /* --- data --- */
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#push} for documentation.
  */
 LittleBitsBridge.prototype.push = function (pushd) {
     var self = this;
@@ -241,7 +241,7 @@ LittleBitsBridge.prototype.push = function (pushd) {
 };
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#pull} for documentation.
  */
 LittleBitsBridge.prototype.pull = function () {
     var self = this;
@@ -253,7 +253,7 @@ LittleBitsBridge.prototype.pull = function () {
 /* --- state --- */
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#meta} for documentation.
  */
 LittleBitsBridge.prototype.meta = function () {
     var self = this;
@@ -270,7 +270,7 @@ LittleBitsBridge.prototype.meta = function () {
 };
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#reachable} for documentation.
  */
 LittleBitsBridge.prototype.reachable = function () {
     if (this.native === null) {
@@ -281,7 +281,7 @@ LittleBitsBridge.prototype.reachable = function () {
 };
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#configure} for documentation.
  */
 LittleBitsBridge.prototype.configure = function (app) {};
 
