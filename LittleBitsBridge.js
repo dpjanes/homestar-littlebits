@@ -187,6 +187,8 @@ LittleBitsBridge.prototype.push = function (pushd) {
         return;
     }
 
+    self._validate_push(pushd);
+
     var paramd = {
         cookd: pushd,
         rawd: {},
