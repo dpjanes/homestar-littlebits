@@ -283,15 +283,6 @@ LittleBitsBridge.prototype.reachable = function () {
  */
 LittleBitsBridge.prototype.configure = function (app) {};
 
-/* --- injected: THIS CODE WILL BE REMOVED AT RUNTIME, DO NOT MODIFY  --- */
-LittleBitsBridge.prototype.discovered = function (bridge) {
-    throw new Error("LittleBitsBridge.discovered not implemented");
-};
-
-LittleBitsBridge.prototype.pulled = function (pulld) {
-    throw new Error("LittleBitsBridge.pulled not implemented");
-};
-
 /* --- internals -- */
 var __api;
 
