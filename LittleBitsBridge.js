@@ -58,6 +58,12 @@ var LittleBitsBridge = function (initd, native) {
     }
 };
 
+LittleBitsBridge.prototype = new iotdb.Bridge();
+
+LittleBitsBridge.prototype.name = function () {
+    return "LittleBitsBridge";
+};
+
 /* --- lifecycle --- */
 
 /**
@@ -150,7 +156,7 @@ LittleBitsBridge.prototype._setup_event = function (subscribe_id) {
             "amplitude:level:idle",
         ]
     }, function() {
-        console.log("HERE:EVENT.ACTIVE", arguments);
+        // console.log("HERE:EVENT.ACTIVE", arguments);
     });
 
 };
