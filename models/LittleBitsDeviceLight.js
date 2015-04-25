@@ -19,13 +19,10 @@ exports.binding = {
     bridge: require('../LittleBitsBridge').Bridge,
     model: exports.Model,
     connectd: {
-        subscribes: [
-        ],
+        subscribes: [],
 
-        data_in: function(paramd) {
-        },
+        data_in: function (paramd) {},
 
-        data_out: function(paramd) {
-        },
+        data_out: function (paramd) {},
     },
 };

@@ -23,10 +23,8 @@ exports.binding = {
             "amplitude",
         ],
 
-        data_in: function(paramd) {
-        },
+        data_in: function (paramd) {},
 
-        data_out: function(paramd) {
-        },
+        data_out: function (paramd) {},
     },
 };

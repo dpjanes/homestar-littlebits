@@ -19,13 +19,11 @@ exports.binding = {
     bridge: require('../LittleBitsBridge').Bridge,
     model: exports.Model,
     connectd: {
-        subscribes: [
-        ],
+        subscribes: [],
 
-        data_in: function(paramd) {
-        },
+        data_in: function (paramd) {},
 
-        data_out: function(paramd) {
+        data_out: function (paramd) {
             if (paramd.cookd.brightness !== undefined) {
                 paramd.rawd.percent = paramd.cookd.brightness;
             } else if (paramd.cookd.on !== undefined) {

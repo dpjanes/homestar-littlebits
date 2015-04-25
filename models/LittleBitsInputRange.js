@@ -22,11 +22,10 @@ exports.binding = {
             "amplitude",
         ],
 
-        data_in: function(paramd) {
+        data_in: function (paramd) {
             console.log("LittleBitsInputRange:data_in", paramd);
         },
 
-        data_out: function(paramd) {
-        },
+        data_out: function (paramd) {},
     },
 };

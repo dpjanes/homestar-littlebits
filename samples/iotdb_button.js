@@ -4,10 +4,12 @@
  *  Note: to work, this package must have been installed by 'homestar install' 
  */
 
-var iotdb = require('iotdb')
+"use strict";
+
+var iotdb = require('iotdb');
 var iot = iotdb.iot();
 
 var things = iot.connect('LittleBitsInputBoolean');
-things.on("state", function(thing) {
+things.on("state", function (thing) {
     console.log("+", thing.thing_id(), "\n ", thing.state("istate"));
 });

@@ -76,7 +76,7 @@ LittleBitsBridge.prototype.discover = function () {
         return;
     }
 
-    api.devices(function(error, devices) {
+    api.devices(function (error, devices) {
         for (var di in devices) {
             var device = devices[di];
             if (self.initd.id && (device.id !== self.initd.id)) {
@@ -95,7 +95,7 @@ LittleBitsBridge.prototype.discover = function () {
             }, self.initd);
 
             self.discovered(new LittleBitsBridge(initd, native));
-        };
+        }
     });
 };
 
@@ -111,8 +111,7 @@ LittleBitsBridge.prototype.connect = function (connectd) {
     self._validate_connect(connectd);
 
     self.connectd = _.defaults(
-        connectd,
-        {
+        connectd, {
             subscribes: [],
         },
         self.connectd
@@ -135,7 +134,7 @@ LittleBitsBridge.prototype._setup_event = function (subscribe_id) {
     self.native.subscribe({
         subscriber_id: self.initd.id,
         publisher_id: self.initd.id,
-        publisher_events: [ 
+        publisher_events: [
             "amplitude",
             "amplitude:delta:sustain",
             "amplitude:delta:ignite",
@@ -144,7 +143,7 @@ LittleBitsBridge.prototype._setup_event = function (subscribe_id) {
             "amplitude:level:active",
             "amplitude:level:idle",
         ]
-    }, function() {
+    }, function () {
         // console.log("HERE:EVENT.ACTIVE", arguments);
     });
 
@@ -206,7 +205,7 @@ LittleBitsBridge.prototype.push = function (pushd) {
         self.native.output({
             percent: paramd.rawd.percent,
             duration_ms: -1,
-        }, function() {
+        }, function () {
             // console.log("HERE:RESULT", arguments);
         });
     } else if (paramd.rawd.color) {
@@ -315,7 +314,7 @@ LittleBitsBridge.prototype._api = function () {
     }
 
     return __api;
-}
+};
 
 /*
  *  API

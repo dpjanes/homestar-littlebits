@@ -18,13 +18,11 @@ exports.binding = {
     bridge: require('../LittleBitsBridge').Bridge,
     model: exports.Model,
     connectd: {
-        subscribes: [
-        ],
+        subscribes: [],
 
-        data_in: function(paramd) {
-        },
+        data_in: function (paramd) {},
 
-        data_out: function(paramd) {
+        data_out: function (paramd) {
             if (paramd.cookd.on !== undefined) {
                 paramd.rawd.percent = paramd.cookd.on ? 100 : 0;
             }

@@ -6,7 +6,7 @@
 #   2015-02-10
 #
 
-PACKAGE=homestar-THEPACKAGE
+PACKAGE=homestar-littlebits
 DIST_ROOT=/var/tmp/.dist.$$
 
 if [ ! -d "$DIST_ROOT" ]
@@ -33,8 +33,8 @@ echo "=================="
         --exclude "node_modules" \
         README.md LICENSE \
         homestar.json package.json \
-        BRIDGE.js index.js \
-        models/*js \
+        LittleBitsBridge.js index.js \
+        models/*.js \
         |
     ( cd "${NPM_DST}" && tar xvf - )
 
