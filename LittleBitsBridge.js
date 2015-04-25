@@ -108,15 +108,15 @@ LittleBitsBridge.prototype.connect = function (connectd) {
         return;
     }
 
-    self.connectd = _.defaults(connectd, {
-        subscribes: [],
-        data_in: function (paramd) {
-            paramd.cookd = paramd.rawd;
+    self._validate_connect(connectd);
+
+    self.connectd = _.defaults(
+        connectd,
+        {
+            subscribes: [],
         },
-        data_out: function (paramd) {
-            paramd.rawd = paramd.cookd;
-        },
-    });
+        self.connectd
+    );
 
     self._setup_events();
 };
