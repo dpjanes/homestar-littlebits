@@ -180,9 +180,10 @@ LittleBitsBridge.prototype.disconnect = function () {
 /**
  *  See {iotdb.bridge.Bridge#push} for documentation.
  */
-LittleBitsBridge.prototype.push = function (pushd) {
+LittleBitsBridge.prototype.push = function (pushd, done) {
     var self = this;
     if (!self.native) {
+        done(new Error("not connected"));
         return;
     }
 
@@ -206,6 +207,7 @@ LittleBitsBridge.prototype.push = function (pushd) {
             percent: paramd.rawd.percent,
             duration_ms: -1,
         }, function () {
+            done();
             // console.log("HERE:RESULT", arguments);
         });
     } else if (paramd.rawd.color) {
