@@ -21,7 +21,7 @@ wrapper.on('bridge', function (bridge) {
         count += 10;
         bridge.push({
             brightness: count % 100
-        });
+        }, function() {});
     }, 1500);
 });
 wrapper.on('state', function (bridge, state) {

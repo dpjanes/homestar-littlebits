@@ -18,7 +18,7 @@ wrapper.on('bridge', function (bridge) {
 
     bridge.push({
         color: "red",
-    });
+    }, function() {});
 
     /*
     var count = 0;
