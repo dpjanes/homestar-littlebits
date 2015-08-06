@@ -263,7 +263,7 @@ LittleBitsBridge.prototype.meta = function () {
     }
 
     return {
-        "iot:thing": _.id.thing_urn.unique("LittleBits", self.initd.id),
+        "iot:thing-id": _.id.thing_urn.unique("LittleBits", self.initd.id),
         "schema:name": self.initd.name || "LittleBits",
         "schema:manufacturer": "http://littlebits.cc/",
         "schema:model": "http://littlebits.cc/cloud",
