@@ -6,17 +6,9 @@
  *  2014-03-24
  */
 
-var iotdb = require("iotdb");
-
-exports.Model = iotdb.make_model('LittleBitsOutputRange')
-    .facet(":toy")
-    .name("LittleBits Output Range")
-    .o("percent", iotdb.number.percent)
-    .make();
-
 exports.binding = {
     bridge: require('../LittleBitsBridge').Bridge,
-    model: exports.Model,
+    model: require('./LittleBitsOutputRange.json'),
     connectd: {
         subscribes: [],
 

@@ -24,10 +24,9 @@
 
 exports.Bridge = require('./LittleBitsBridge').Bridge;
 exports.bindings = [
-    require('./models/LightBitsOutputBoolean').binding,
-    require('./models/LightBitsOutputRange').binding,
+    require('./models/LittleBitsOutputBoolean').binding,
+    require('./models/LittleBitsOutputRange').binding,
     require('./models/LittleBitsDeviceLight').binding,
-    require('./models/LittleBitsGeneric').binding,
     require('./models/LittleBitsInputBoolean').binding,
     require('./models/LittleBitsInputRange').binding,
     require('./models/LittleBitsLight').binding,

@@ -8,16 +8,9 @@
 
 var iotdb = require("iotdb");
 
-exports.Model = iotdb.make_model('LittleBitsLight')
-    .facet(":toy")
-    .name("LittleBits LED")
-    .io("on", iotdb.boolean.on)
-    .io("brightness", iotdb.number.percent.brightness)
-    .make();
-
 exports.binding = {
     bridge: require('../LittleBitsBridge').Bridge,
-    model: exports.Model,
+    model: require('./LittleBitsLight.json'),
     connectd: {
         subscribes: [],
 

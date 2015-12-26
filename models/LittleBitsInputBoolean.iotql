@@ -1,0 +1,10 @@
+CREATE MODEL LittleBitsInputBoolean WITH
+    schema:name = "LittleBits Input Boolean",
+    iot:facet = iot-facet:toy
+ATTRIBUTE on WITH
+    schema:name = "on",
+    iot:purpose = iot-purpose:on,
+    iot:type = iot:type.boolean,
+    iot:read = true,
+    iot:write = false
+;

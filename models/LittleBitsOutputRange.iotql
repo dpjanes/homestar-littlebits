@@ -1,0 +1,13 @@
+CREATE MODEL LittleBitsOutputRange WITH
+    schema:name = "LittleBits Output Range",
+    iot:facet = iot-facet:toy
+ATTRIBUTE percent WITH
+    schema:name = "value",
+    iot:purpose = iot-purpose:value,
+    iot:type = iot:type.number,
+    iot:unit = iot-unit:math.fraction.percent,
+    iot:minimum = 0,
+    iot:maximum = 100,
+    iot:read = false,
+    iot:write = true
+;
