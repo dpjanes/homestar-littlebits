@@ -8,15 +8,9 @@
 
 var iotdb = require("iotdb");
 
-exports.Model = iotdb.make_model('LittleBitsInputBoolean')
-    .facet(":toy")
-    .name("LittleBits Input Boolean")
-    .i("on", iotdb.boolean.on)
-    .make();
-
 exports.binding = {
     bridge: require('../LittleBitsBridge').Bridge,
-    model: exports.Model,
+    model: require('./LittleBitsInputBoolean.json'),
     connectd: {
         subscribes: [
             "amplitude",
