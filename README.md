@@ -1,7 +1,7 @@
 # homestar-littlebits
 IOTDB / HomeStar Controller for Little Bits Cloud
 
-<img src="https://github.com/dpjanes/iotdb-homestar/blob/master/docs/HomeStar.png" align="right" />
+<img src="https://raw.githubusercontent.com/dpjanes/iotdb-homestar/master/docs/HomeStar.png" align="right" />
 
 NOTE: This is not working yet!!!
 
