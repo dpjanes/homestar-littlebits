@@ -24,11 +24,10 @@
 
 var iotdb = require('iotdb');
 var _ = iotdb._;
-var bunyan = iotdb.bunyan;
 
 var littlebits = require('littlebits-cloud-http');
 
-var logger = bunyan.createLogger({
+var logger = iotdb.logger({
     name: 'homestar-littlebits',
     module: 'LittleBitsBridge',
 });
