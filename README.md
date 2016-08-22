@@ -1,5 +1,5 @@
 # homestar-littlebits
-IOTDB / Home☆Star Controller for [littleBits CloudBit](https://littlebits.cc/bits/cloudbit)
+[IOTDB](https://github.com/dpjanes/node-iotdb) Bridge for for [littleBits CloudBit](https://littlebits.cc/bits/cloudbit)
 
 <img src="https://raw.githubusercontent.com/dpjanes/iotdb-homestar/master/docs/HomeStar.png" align="right" />
 
