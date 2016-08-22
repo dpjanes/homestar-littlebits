@@ -3,30 +3,22 @@
 
 <img src="https://raw.githubusercontent.com/dpjanes/iotdb-homestar/master/docs/HomeStar.png" align="right" />
 
+# About
+
 NOTE: This is not working yet!!!
-
-# Installation
-
-* [Read this first](https://github.com/dpjanes/node-iotdb/blob/master/docs/install.md)
-
-Then:
-
-    $ npm install homestar-littlebits
-
-## Links
 
 * http://control.littlebitscloud.cc/
 * https://github.com/littlebits/cloud-client-api-http
 * http://littlebits.cc/cloud
 
-# Installation
+# Installation and Configuration
 
-[Install Home☆Star first](https://homestar.io/about/install).
+* [Read this first](https://github.com/dpjanes/node-iotdb/blob/master/docs/install.md)
+* [Read about installing Home☆Star](https://github.com/dpjanes/node-iotdb/blob/master/docs/homestar.md) 
 
-Then:
-
-
-    $ homestar install homestar-littlebits
+    $ npm install -g homestar    ## may require sudo
+    $ homestar setup
+    $ npm install homestar-littlebits
 
 You'll also need an access token, which you can get from littleBits.
 
