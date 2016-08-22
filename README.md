@@ -5,6 +5,14 @@
 
 NOTE: This is not working yet!!!
 
+# Installation
+
+* [Read this first](https://github.com/dpjanes/node-iotdb/blob/master/docs/install.md)
+
+Then:
+
+    $ npm install homestar-littlebits
+
 ## Links
 
 * http://control.littlebitscloud.cc/
