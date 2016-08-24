@@ -11,6 +11,8 @@ NOTE: This is not working yet!!!
 * https://github.com/littlebits/cloud-client-api-http
 * http://littlebits.cc/cloud
 
+* [Read about Bridges](https://github.com/dpjanes/node-iotdb/blob/master/docs/bridges.md)
+
 # Installation and Configuration
 
 * [Read this first](https://github.com/dpjanes/node-iotdb/blob/master/docs/install.md)
