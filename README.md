@@ -21,7 +21,6 @@ NOTE: This is not working yet!!!
 Then:
 
     $ npm install -g homestar    ## may require sudo
-    $ homestar setup
     $ npm install homestar-littlebits
 
 You'll also need an access token, which you can get from littleBits.
