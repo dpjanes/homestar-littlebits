@@ -31,3 +31,5 @@ exports.bindings = [
     require('./models/LittleBitsInputRange').binding,
     require('./models/LittleBitsLight').binding,
 ];
+
+exports.module_folder = __dirname;
