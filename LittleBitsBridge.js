@@ -55,10 +55,6 @@ var LittleBitsBridge = function (initd, native) {
 
 LittleBitsBridge.prototype = new iotdb.Bridge();
 
-LittleBitsBridge.prototype.name = function () {
-    return "LittleBitsBridge";
-};
-
 /* --- lifecycle --- */
 
 /**
